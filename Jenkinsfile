@@ -24,5 +24,5 @@ pipeline {
         bat 'java -jar target/helllo-0.0.1-SNAPSHOT.jar'
     }
  }
-    }       
+          
 }
