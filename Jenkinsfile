@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // Optional: specify a JDK or other tool if needed
-        // jdk 'JDK11'
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -23,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo Running tests'
-                // Add test commands here if you have any
+                // Add test commands here
             }
         }
 
