@@ -1,33 +1,30 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Darshantalawar/hello.git', branch: 'main'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'echo Building on macOS'
-                sh 'javac Hello.java'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'echo Running tests'
-                // Add test commands here
-            }
-        }
-
+pipeline { 
+    agent any 
+    tools { 
+        maven 'Maven' // Ensure this matches your Maven tool configuration name
+    } 
+    stages { 
+        stage('Checkout') {  
+            steps { 
+                git branch: 'main', url: 'https://github.com/Darshantalawar/hello.git'  
+            } 
+        } 
+        stage('Build') {  
+            steps { 
+                sh 'mvn clean package'  
+            } 
+        } 
+        stage('Test') {  
+            steps { 
+                sh 'mvn test'  
+            } 
+        } 
         stage('Run Application') {
             steps {
-                sh 'echo Running Hello.java'
-                sh 'java Hello'
+                sh 'java -jar target/helllo-0.0.1-SNAPSHOT.jar'
             }
         }
     }
 }
 
+}
